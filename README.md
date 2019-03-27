@@ -144,7 +144,7 @@ function User(name, email) {
 }
 
 // [1] Create a new "context", that's what `new` does
-// Use _that_ new context inside of the execution of the `User` fuction
+// Use _that_ new context inside of the execution of the `User` function
 // also pass two parameters, "Lauren" and "lauren@example.com"
 
 // [4]: Assign the new context thing with its this properties set to the
