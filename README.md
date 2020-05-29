@@ -139,7 +139,7 @@ Here's the code sample above, but with some more comments. Follow the
 function User(name, email) {
 	this.name = name;   // [2] Set my context's property name to what
                       //     came in in the first argument (name)
-	this.email = email; // [3] Set my context's property name to what
+	this.email = email; // [3] Set my context's property email to what
                       //     came in in the second argument (email)
 }
 
