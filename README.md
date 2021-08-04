@@ -2,10 +2,10 @@
 
 ## Learning Goals
 
-* Create a constructor function
-* Use a constructor function to create an object
-* Explain what a constructor function is and how it works
-* Explain what `new` is and how it works with the constructor function
+- Create a constructor function
+- Use a constructor function to create an object
+- Explain what a constructor function is and how it works
+- Explain what `new` is and how it works with the constructor function
 
 ## Introduction
 
@@ -21,30 +21,29 @@ It's sometime handy to represent data with objects, which gives us key/value
 pairs. For example, we may represent a user as the following:
 
 ```javascript
-const bobby = {name: 'bobby', age: 20, hometown: 'Philadelphia'}
+const bobby = { name: "bobby", age: 20, hometown: "Philadelphia" };
 ```
 
 Now imagine that we had a couple of users:
 
 ```js
 const bobby = {
-  name: 'bobby',
+  name: "bobby",
   age: 20,
-  hometown: 'Philadelphia'
-}
+  hometown: "Philadelphia",
+};
 
 const susan = {
-  name: 'susan',
+  name: "susan",
   age: 28,
-  hometown: 'Boston'
-}
-
+  hometown: "Boston",
+};
 ```
 
 Great. Two nice users.
 
 Note, that with both objects sharing exactly the same keys, and only the values
-differing, we are *[repeating ourselves][DRY]*.  We would like a mechanism to
+differing, we are _[repeating ourselves][dry]_. We would like a mechanism to
 construct objects with the same attributes (that is, keys), while assigning
 different values to those keys. The name for what kind of function does this
 varies across many popular programming languages, but we'll call it **a factory
@@ -52,30 +51,30 @@ function** because it spits out new instances.
 
 ```js
 function User(name, age, hometown) {
-	return {
+  return {
     name, // don't forget ES6 power-tools, this is the same as `name: name`
     age,
     hometown,
-  }
+  };
 }
 
-let byronPoodle = User("Karbit's Byron By the Bay", 5, "Manhattan")
-byronPoodle.age // => 5
+const byronPoodle = User("Karbit's Byron By the Bay", 5, "Manhattan");
+byronPoodle.age; // => 5
 ```
 
 Interestingly `typeof` confirms `byronPoodle` is an `Object`:
 
-```text
-> typeof byronPoodle
-'object'
+```js
+typeof byronPoodle;
+// => 'object'
 ```
 
 However, something's not quite as clear as we might like it to be. If we ask
 `byronPoodle` what made it, the answer is...
 
-```text
-> byronPoodle.constructor
-[Function: Object]
+```js
+byronPoodle.constructor;
+// => [Function: Object]
 ```
 
 `byronPoodle` is certainly an `Object` but it's more specific than
@@ -89,13 +88,13 @@ function_. It's the same idea, but with a few subtle additions.
 
 ## Explain What `new` Is and How It Works With the Constructor Function
 
-Lets create a _constructor function_.  Constructor functions must be paired with the `new`
+Lets create a _constructor function_. Constructor functions must be paired with the `new`
 keyword (which we'll cover in a moment).
 
 ```js
 function User(name, email) {
-	this.name = name;
-	this.email = email;
+  this.name = name;
+  this.email = email;
 }
 ```
 
@@ -116,12 +115,12 @@ Put the two together like so:
 
 ```js
 function User(name, email) {
-	this.name = name;
-	this.email = email;
+  this.name = name;
+  this.email = email;
 }
 
-let lauren = new User("Lauren", "lauren@example.com");
-lauren.name //=> "Lauren"
+const lauren = new User("Lauren", "lauren@example.com");
+lauren.name; //=> "Lauren"
 ```
 
 _Remember you can and should try these out for yourself in the JavaScript
@@ -137,10 +136,10 @@ Here's the code sample above, but with some more comments. Follow the
 
 ```js
 function User(name, email) {
-	this.name = name;   // [2] Set my context's property name to what
-                      //     came in in the first argument (name)
-	this.email = email; // [3] Set my context's property email to what
-                      //     came in in the second argument (email)
+  this.name = name; // [2] Set my context's property name to what
+  //     came in in the first argument (name)
+  this.email = email; // [3] Set my context's property email to what
+  //     came in in the second argument (email)
 }
 
 // [1] Create a new "context", that's what `new` does
@@ -149,20 +148,20 @@ function User(name, email) {
 
 // [4]: Assign the new context thing with its this properties set to the
 // variable `lauren`
-let lauren = new User("Lauren", "lauren@example.com");
+const lauren = new User("Lauren", "lauren@example.com");
 
 // [5]: Ask the new context for what's in its `.name` property
-lauren.name //=> [6] "Lauren"
+lauren.name; //=> [6] "Lauren"
 ```
 
 You can ask interesting questions about the `lauren` variable. Building on the
 previous code:
 
 ```js
-> typeof lauren
-'object'
-> lauren.constructor
-[Function: User]
+typeof lauren;
+// => 'object'
+lauren.constructor;
+// => [Function: User]
 ```
 
 This sorta makes sense, the function that constructed `lauren`, or the
@@ -178,16 +177,17 @@ anonymous function to a property. That function would have access to the
 
 ```js
 function User(name, email) {
-	this.name = name;
-	this.email = email;
-	this.sayHello = function() {
-		console.log(`Hello everybody, my name is ${this.name} whom you've been
+  this.name = name;
+  this.email = email;
+  this.sayHello = function () {
+    console.log(`Hello everybody, my name is ${this.name} whom you've been
 mailing at ${this.email}!`);
-	};
+  };
 }
 
-let lauren = new User('lauren', 'lauren@example.com');
-lauren.sayHello(); //=> Hello everybody, my name is lauren whom you've been mailing at lauren@example.com!
+const lauren = new User("lauren", "lauren@example.com");
+lauren.sayHello();
+// => Hello everybody, my name is lauren whom you've been mailing at lauren@example.com!
 ```
 
 Feel free to try it with other names and emails to prove to yourself that you
@@ -203,4 +203,4 @@ There's one problem with this design. It's incredibly memory inefficient. Take
 a look at the code and imagine what that inefficiency could be. We'll explore
 it together in the next lesson!
 
-[DRY]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
+[dry]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
