@@ -21,22 +21,22 @@ It's sometime handy to represent data with objects, which gives us key/value
 pairs. For example, we may represent a user as the following:
 
 ```javascript
-const bobby = { name: "bobby", age: 20, hometown: "Philadelphia" };
+const guadalupe = { name: "guadalupe", age: 34, hometown: "Denver" };
 ```
 
 Now imagine that we had a couple of users:
 
 ```js
-const bobby = {
-  name: "bobby",
-  age: 20,
-  hometown: "Philadelphia",
+const guadalupe = {
+  name: "guadalupe",
+  age: 34,
+  hometown: "Denver",
 };
 
-const susan = {
-  name: "susan",
-  age: 28,
-  hometown: "Boston",
+const aki = {
+  name: "aki",
+  age: 58,
+  hometown: "Los Angeles",
 };
 ```
 
@@ -58,26 +58,26 @@ function User(name, age, hometown) {
   };
 }
 
-const byronPoodle = User("Karbit's Byron By the Bay", 5, "Manhattan");
-byronPoodle.age; // => 5
+const amaru = User("Amaru", 45, "New York City");
+amaru.age; // => 45
 ```
 
-Interestingly `typeof` confirms `byronPoodle` is an `Object`:
+Interestingly `typeof` confirms `amaru` is an `Object`:
 
 ```js
-typeof byronPoodle;
+typeof amaru;
 // => 'object'
 ```
 
 However, something's not quite as clear as we might like it to be. If we ask
-`byronPoodle` what made it, the answer is...
+`amaru` what made it, the answer is...
 
 ```js
-byronPoodle.constructor;
+amaru.constructor;
 // => [Function: Object]
 ```
 
-`byronPoodle` is certainly an `Object` but it's more specific than
+`amaru` is certainly an `Object` but it's more specific than
 that: it's a `User`. We'd really like for this special kind of object to be
 reflected when we ask it what it is. We'd like for a mystical process to come
 along and say you are not merely an `Object`, you are a `User` or a `Dog`.
@@ -119,8 +119,8 @@ function User(name, email) {
   this.email = email;
 }
 
-const lauren = new User("Lauren", "lauren@example.com");
-lauren.name; //=> "Lauren"
+const greyson = new User("Greyson", "greyson@example.com");
+greyson.name; //=> "Greyson"
 ```
 
 _Remember you can and should try these out for yourself in the JavaScript
@@ -144,34 +144,34 @@ function User(name, email) {
 
 // [1] Create a new "context", that's what `new` does
 // Use _that_ new context inside of the execution of the `User` function
-// also pass two parameters, "Lauren" and "lauren@example.com"
+// also pass two parameters, "Greyson" and "greyson@example.com"
 
 // [4]: Assign the new context thing with its this properties set to the
-// variable `lauren`
-const lauren = new User("Lauren", "lauren@example.com");
+// variable `greyson`
+const greyson = new User("Greyson", "greyson@example.com");
 
 // [5]: Ask the new context for what's in its `.name` property
-lauren.name; //=> [6] "Lauren"
+greyson.name; //=> [6] "Greyson"
 ```
 
-You can ask interesting questions about the `lauren` variable. Building on the
+You can ask interesting questions about the `greyson` variable. Building on the
 previous code:
 
 ```js
-typeof lauren;
+typeof greyson;
 // => 'object'
-lauren.constructor;
+greyson.constructor;
 // => [Function: User]
 ```
 
-This sorta makes sense, the function that constructed `lauren`, or the
-`constructor` is `User`. The instance `lauren` is an `object`. Given what we
+This sorta makes sense, the function that constructed `greyson`, or the
+`constructor` is `User`. The instance `greyson` is an `object`. Given what we
 know about the types available in JavaScript, `object` makes good sense (not a
 `Number` or a `String`, that's for sure!)
 
 Since we know one OO pattern, we might be wondering how to add methods to the
 `User` instances. It should be obvious that if we can set a property to point to
-a value like `"Lauren"` or `"lauren@example.com"`, we should be able to set an
+a value like `"greyson"` or `"greyson@example.com"`, we should be able to set an
 anonymous function to a property. That function would have access to the
 `this` context created when the instance was `new`'d into existence.
 
@@ -185,9 +185,9 @@ mailing at ${this.email}!`);
   };
 }
 
-const lauren = new User("lauren", "lauren@example.com");
-lauren.sayHello();
-// => Hello everybody, my name is lauren whom you've been mailing at lauren@example.com!
+const greyson = new User("Greyson", "greyson@example.com");
+greyson.sayHello();
+// => Hello everybody, my name is Greyson whom you've been mailing at greyson@example.com!
 ```
 
 Feel free to try it with other names and emails to prove to yourself that you
